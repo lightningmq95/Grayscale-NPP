@@ -59,6 +59,18 @@ A `Makefile` is provided to simplify the compilation process.
     ```
 4.  **Check Output**: The program will process each image and save the grayscale versions with a `_grayscale` suffix in the `output_images` directory, preserving the original file extension.
 
+### Example
+
+Here is an example of the program processing a single image.
+
+| Input Image                           | Output Image (Grayscale)                          |
+| ------------------------------------- | ------------------------------------------------- |
+| ![Input Image](input_images/test.jpg) | ![Output Image](output_images/test_grayscale.jpg) |
+
+**Command Line Output:**
+
+![Command Line Output](assets/cli_output.png)
+
 ## Cleaning Up
 
 To remove the compiled executable and any object files, you can use the `make clean` command:

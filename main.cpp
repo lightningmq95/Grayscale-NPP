@@ -167,11 +167,11 @@ int main() {
       // 2. Allocate memory on device
       Npp8u* device_rgb_ptr;
       Npp8u* device_gray_ptr;
-      CUDA_CHECK(cudaMalloc((void**)&device_rgb_ptr, rgb_data_size));
-      CUDA_CHECK(cudaMalloc((void**)&device_gray_ptr, gray_data_size));
+      cudaMalloc((void**)&device_rgb_ptr, rgb_data_size);
+      cudaMalloc((void**)&device_gray_ptr, gray_data_size);
 
       // 3. Copy image from host to device
-      CUDA_CHECK(cudaMemcpy(device_rgb_ptr, host_rgb_image.data.data(), rgb_data_size, cudaMemcpyHostToDevice));
+      cudaMemcpy(device_rgb_ptr, host_rgb_image.data.data(), rgb_data_size, cudaMemcpyHostToDevice);
 
       // 4. Perform RGB to Grayscale conversion using NPP
       NppiSize roi_size = {width, height};
@@ -188,7 +188,7 @@ int main() {
 
       // 5. Copy result from device to host
       std::vector<unsigned char> host_gray_data(width * height);
-      CUDA_CHECK(cudaMemcpy(host_gray_data.data(), device_gray_ptr, gray_data_size, cudaMemcpyDeviceToHost));
+      cudaMemcpy(host_gray_data.data(), device_gray_ptr, gray_data_size, cudaMemcpyDeviceToHost);
 
       // 6. Save the grayscale image
 #ifdef _WIN32  // for windows
@@ -197,7 +197,7 @@ int main() {
       std::string output_filename = output_dir + "/" + host_rgb_image.name + "_grayscale" + host_rgb_image.extension;
 #endif
       saveImage(output_filename, width, height, host_gray_data.data());
-      std::cout << "  -> Saved to " << output_filename << std::endl;
+      std::cout << "Saved to " << output_filename << std::endl;
 
       // 7. Free device memory
       cudaFree(device_rgb_ptr);
