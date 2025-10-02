@@ -1,5 +1,8 @@
 # CUDA NPP Image Batch Processing
 
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
+
 A C++/CUDA project demonstrating high-performance batch image processing using the NVIDIA Performance Primitives (NPP) library.
 
 This program processes all `.jpg`, `.jpeg`, and `.png` images in an input directory, converts them to grayscale on the GPU, and saves them to an output directory.
